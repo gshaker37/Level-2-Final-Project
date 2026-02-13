@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mandarin ↔ English Flashcards</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <h1>Flashcards: Mandarin ↔ English</h1>
+      <div class="header-actions">
+        <button id="swapBtn" class="btn" type="button" title="Swap front/back">
+          Swap方向
+        </button>
+        <button id="shuffleBtn" class="btn" type="button" title="Shuffle deck">
+          Shuffle
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-grid">
+    
+    <section class="card-panel" aria-label="Flashcard study area">
+      <div class="study-top">
+        <div class="progress">
+          <span id="countLabel">0 / 0</span>
+          <span class="muted" id="hintLabel">Tap / click card to flip</span>
+        </div>
+        <div class="study-controls">
+          <button id="prevBtn" class="btn" type="button">Prev</button>
+          <button id="nextBtn" class="btn" type="button">Next</button>
+        </div>
+      </div>
+
+      <div class="flip-wrap">
+        <div id="flashcard" class="flip-card" tabindex="0" role="button" aria-label="Flashcard. Click to flip.">
+          <div class="flip-card-inner" id="flipInner">
+            <div class="flip-card-face flip-card-front">
+              <div class="lang-tag" id="frontTag">中文</div>
+              <div class="card-text" id="frontText">Add cards to start</div>
+              <div class="card-sub muted" id="frontSub"></div>
+            </div>
+            <div class="flip-card-face flip-card-back">
+              <div class="lang-tag" id="backTag">English</div>
+              <div class="card-text" id="backText">...</div>
+              <div class="card-sub muted" id="backSub"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="study-bottom">
+        <button id="togglePinyinBtn" class="btn" type="button">Toggle Pinyin</button>
+        <button id="deleteCurrentBtn" class="btn btn-danger" type="button">Delete This Card</button>
+      </div>
+    </section>
+
+  
+    <section class="manage-panel" aria-label="Manage flashcards">
+      <h2>Manage Cards</h2>
+
+      <form id="addForm" class="panel" autocomplete="off">
+        <div class="grid-2">
+          <label>
+            Mandarin (中文)
+            <input id="cnInput" type="text" placeholder="例如：你好"/>
+          </label>
+
+          <label>
+            English
+            <input id="enInput" type="text" placeholder="e.g. hello"/>
+          </label>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            Pinyin (optional)
+            <input id="pyInput" type="text" placeholder="nǐ hǎo"/>
+          </label>
+
+          <label>
+            Notes (optional)
+            <input id="notesInput" type="text" placeholder="tone / example sentence"/>
+          </label>
+        </div>
+
+        <div class="row">
+          <button class="btn" type="submit">Add Card</button>
+          <button id="apiFillBtn" class="btn" type="button" title="Use translation API to help fill">
+            Auto-translate (API)
+          </button>
+        </div>
+
+        <p class="muted small">
+          Tip: Type either side (Mandarin or English), then click <b>Auto-translate</b>.
+        </p>
+      </form>
+
+      <div class="panel">
+        <div class="row row-between">
+          <h3 class="h3">Deck</h3>
+          <button id="clearAllBtn" class="btn btn-danger" type="button">Clear All</button>
+        </div>
+
+        <div class="list" id="deckList" aria-label="Saved flashcards list"></div>
+      </div>
+    </section>
+
+   
+    <section class="contact-panel" aria-label="Contact form">
+      <h2>Contact</h2>
+
+      <form id="contactForm" class="panel" novalidate>
+        <label>
+          Name
+          <input id="nameInput" type="text" name="name" required minlength="2"/>
+          <small class="error" id="nameError"></small>
+        </label>
+
+        <label>
+          Email
+          <input id="emailInput" type="email" name="email" required />
+          <small class="error" id="emailError"></small>
+        </label>
+
+        <label>
+          Message
+          <textarea id="messageInput" name="message" required minlength="10"></textarea>
+          <small class="error" id="messageError"></small>
+        </label>
+
+        <button class="btn" type="submit">Send</button>
+        <p class="muted small" id="contactSuccess" role="status"></p>
+      </form>
+    </section>
+  
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
